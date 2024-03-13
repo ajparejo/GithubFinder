@@ -2,7 +2,7 @@
 
 
 export const Users = ({ users }) => {
-  const { avatar_url, login, bio, followers, following, public_repos, created_at } = users
+  const { avatar_url, login, name, bio, followers, following, public_repos, created_at } = users
 
   const date = new Date(created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   
@@ -10,7 +10,7 @@ export const Users = ({ users }) => {
     <div className="cardContainer">
         <div className="cardLeft">
             <img src={avatar_url} alt={login} className="avatar"/>
-            <a href={`https://www.github.com/users/${login}`} target="_blank" rel="noreferrer">{login}</a>
+            <a href={`https://www.github.com/users/${login}`} target="_blank" rel="noreferrer">{name} | {login}</a>
             <h5>{date === 'Invalid Date' ? '' : `Joined Github at ${date}`}</h5>
         </div>
         <div className="cardRight">

@@ -5,15 +5,12 @@ import './App.css'
 function App() {
   const [userName, setUserName] = useState('')
   const [userData, setUserData] = useState(null)
-  const [loading, setLoading] = useState(false)
 
   const fetchGithubData = async () => {
-    setLoading(true);
     const response = await fetch(`https://api.github.com/users/${userName}`);
     const data = await response.json();
     if (data) {
       setUserData(data);
-      setLoading(false);
       setUserName('');
     }
   }
@@ -26,15 +23,11 @@ function App() {
     fetchGithubData()
   }, []);
 
-  if (loading) {
-    return <div className='loading'><h1>Loading...</h1></div>
-  }
-
   return (
     <>
       <div className='container'>
         <header>
-          <h2>Github Finder</h2>
+          <h1>Github Finder</h1>
         </header>
         <div className="searchWrapper">
           <input type="text" className="searchInput" placeholder='Search Github username...' value={userName} onChange={(e) => setUserName(e.target.value)}/>
